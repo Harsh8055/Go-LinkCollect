@@ -8,10 +8,10 @@ func main() {
 
 fmt.Printf("Getting Started, initializing")
 
-arr := []int{9, 7, 3, 5, 2}
+arr := []int{9, 7, 3, 5,3, 2}
 
 mergeSort:= mergeSort(arr);
-fmt.Printf("Sorted Array, %-1t", mergeSort)
+fmt.Printf("Sorted Array, %v", mergeSort)
 
 }
 
@@ -20,21 +20,15 @@ func merge(arr1 []int, arr2 []int) []int {
 	var mergedArr []int;
 	pointer1 := 0
 	pointer2 := 0
-	length := 0
 
-	if(len(arr1) > len(arr2)) {
-		length = len(arr2)
-	} else if(len(arr1) < len(arr2)){
-		length = len(arr1)
-	} else { length = len(arr1)}
+	k := 0
 
-	for i := 0; i < length; i++ {
-		
-		if(arr1[pointer1] < arr2[pointer2]) {
+
+	for pointer1 < len(arr1) && pointer2 < len(arr2) {
+		if arr1[pointer1] < arr2[pointer2] {
 			mergedArr = append(mergedArr, arr1[pointer1])
-		
 			pointer1++
-		} else if(arr1[pointer1] > arr2[pointer2]) {
+		} else if arr1[pointer1] > arr2[pointer2] {
 			mergedArr = append(mergedArr, arr2[pointer2])
 			pointer2++
 		} else {
@@ -43,8 +37,21 @@ func merge(arr1 []int, arr2 []int) []int {
 			pointer1++
 			pointer2++
 		}
-
+		k++
 	}
+
+	for pointer1 < len(arr1) {
+		mergedArr = append(mergedArr, arr1[pointer1])
+		pointer1++
+		k++;
+	}
+
+	for pointer2 < len(arr2) {
+		mergedArr = append(mergedArr, arr2[pointer2])
+		pointer2++
+		k++;
+	}
+	
 
 	fmt.Printf("mergedArr %v", mergedArr)
 
